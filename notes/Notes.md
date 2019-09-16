@@ -37,7 +37,48 @@ val 声明的变量只读，因此不能重写 setter 函数，但可以重写 g
     > 
     > 即像 Int? 和 List<Int> 这种是装箱的。
     
- 
+##### 类和对象
+* Java 中的 extends 和 implements 都使用 `:` 代替。 
+    ```
+    class A : ClassB(), ImplC {}
+    ```
+* 构造函数使用 `constructor` 关键字与普通函数区分：
+    ```
+    class MainActivity : AppCompatActivity {
+        constructor() {
+        }
+    }
+    ```
+* Kotlin 里的 `override` 函数的可见性是继承自父类的。
+* Kotlin 里的类默认是 final 的，如果要解除 final 限制，需要使用 `open` 关键字来完成：
+    ```
+    open class A : ClassB() {}
     
+    class C : A() {}
+    ```
+    这里的 C 也是 final 的，即 `open` 没有父类到子类的遗传性。
+* Kotlin 中实例化一个对象不需要 `new` 关键字：
+    ```
+    var cInstance: C = C()
+    ```
+##### 类型判断
+Java 中 `instanceof` -> Kotlin 中的 `is`，同时强转也可以省略（编译器能够进行类型推断）：
+```
+if (a is C) {
+    a.action()
+}
+```
+另外，还可以使用 `as` 关键字来省略类型判断，直接强转调用：
+```
+(a as C).action()
+```
+如果这里的强转失败，则会抛出异常。
 
+更好地处理强转可能出错的情况是使用 `as?` 来解决：
+```
+(a as? C)?.action()
+```
+`(a as? C)` 得到的是一个可空类型的对象，因此需要使用 `?.` 来调用。
+
+即如果强转成功则执行之后的调用，如果失败就不执行。
 
