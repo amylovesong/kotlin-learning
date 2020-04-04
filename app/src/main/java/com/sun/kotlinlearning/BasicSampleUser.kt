@@ -1,6 +1,6 @@
 package com.sun.kotlinlearning
 
-class User {
+class BasicSampleUser {
     var name: String? = null
     var value: String = "hello"
     // 类型推断

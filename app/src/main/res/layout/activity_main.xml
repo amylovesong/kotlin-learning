@@ -11,9 +11,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_array_time_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:text="Array Time Cost:"/>
+
+    <Button
+        android:id="@+id/btn_time_cost_array"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Array"
+        android:textAllCaps="false"
+        android:onClick="onClick"
+        app:layout_constraintStart_toStartOf="@id/tv_array_time_cost"
+        app:layout_constraintTop_toBottomOf="@id/tv_array_time_cost"/>
+
+    <Button
+        android:id="@+id/btn_time_cost_int_array"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IntArray"
+        android:textAllCaps="false"
+        android:onClick="onClick"
+        app:layout_constraintStart_toStartOf="@id/tv_array_time_cost"
+        app:layout_constraintTop_toBottomOf="@id/btn_time_cost_array" />
+
+    <Button
+        android:id="@+id/btn_time_cost_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List"
+        android:textAllCaps="false"
+        android:onClick="onClick"
+        app:layout_constraintStart_toStartOf="@id/tv_array_time_cost"
+        app:layout_constraintTop_toBottomOf="@id/btn_time_cost_int_array" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

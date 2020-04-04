@@ -1,6 +1,6 @@
 package com.sun.kotlinlearning
 
-class Food {
+class BasicDataType {
     /** 类型 */
     // 基本类型
     var number: Int = 1

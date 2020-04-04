@@ -2,11 +2,11 @@ package com.sun.kotlinlearning
 
 import android.view.View
 
-class Sample {
+class BasicSample {
     var view: View? = null
     lateinit var view1: View
 
-    fun cook(name: String): Food? {
+    fun cook(name: String): BasicDataType? {
         return null
     }
 
