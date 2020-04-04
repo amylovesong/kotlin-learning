@@ -1,4 +1,4 @@
-package com.sun.kotlinsample
+package com.sun.kotlinlearning
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

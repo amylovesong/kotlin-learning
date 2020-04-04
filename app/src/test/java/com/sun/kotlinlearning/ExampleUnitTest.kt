@@ -1,4 +1,4 @@
-package com.sun.kotlinsample
+package com.sun.kotlinlearning
 
 import org.junit.Test
 
