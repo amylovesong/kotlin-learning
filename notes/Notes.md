@@ -261,6 +261,198 @@ Kotlin 默认的可见性是 `public`，同时去掉了「包内可见」的概�
 
 Kotlin 的一个文件中可以声明多个 `class` 和 top-level 的函数和属性，因此类和接口可以声明为 `private`。
 
+### Lesson 3
+> [Kotlin 里那些「更方便的」](https://kaixue.io/kotlin-basic-3/)
 
+##### 构造器
+- 主构造器：直接写在类名后面。最多只能有一个，可以没有。没有方法体，init 代码块可以充当其方法体。
+- 次构造器：写在类中的构造器。无个数限制。必须调用主构造器（直接 or 间接通过其他次构造器都可以）。
 
+主构造器的参数添加 `var` 或者 `val` 后就变成了类的属性，参数的值就是属性的初始值。
 
+##### 函数简化
+```
+fun area1(width: Int, height: Int): Int = width * height
+```
+返回类型可以省略（「类型推断」特性），但不推荐
+
+无返回值的情况，也可以理解为返回值是 `Unit`。
+```
+fun sayHi(name: String) = println("Hi $name")
+```
+
+##### 参数默认值
+- 方法重载
+
+##### 命名参数
+方法调用时带上参数名：
+```
+// 命名参数
+fun showInfo(name: String =  "world", age: Int) {
+    println("My name is $name, I'm $age")
+}
+
+showInfo(age = 20) //『命名参数』
+showInfo("S", 18) // 『位置参数』
+// showInfo(name = "S", 18) // 会报错
+showInfo("S", age = 18) //『混合使用』时，『位置参数』要在第一个『命名参数』前！
+showInfo(age = 18, name = "S") //『命名参数』无序
+```
+- 解决默认值参数的调用问题（默认值参数在前面）
+- 区分参数名，增强可读性
+- 位置参数：相对于『命名参数』而言，按顺序进行参数填写。（调用时不带参数名）
+
+##### 本地函数（嵌套函数）
+在函数内部声明一个函数——嵌套函数，只在这个函数内访问。
+
+嵌套函数可以访问在它外部的所有变量或常量：类属性、外层函数的参数与变量等。
+```
+fun login(user: String, password: String, illegalStr: String) {
+    // 嵌套函数
+    fun validate(value: String) {
+        if (value.isEmpty()) {
+            // 这里直接使用了外层函数的参数
+            throw IllegalArgumentException(illegalStr)
+        }
+    }
+        
+    validate(user)
+    validate(password)
+}
+```
+
+###### 字符串
+字符串模板：`$`、`${}`
+
+原生字符串：`"""String"""`
+```
+val name = "world"
+val nameStr = "kotlin"
+val text  = """
+      Hi $name!
+    My name is $nameStr.\n
+"""
+println(text) // \n不被转义，空格和换行都会被输出，$引用变量有效
+
+// trimMargin() 函数去掉每行前面的空格：
+val textTrim = """
+      |Hi world!
+    |My name is kotlin.
+""".trimMargin() // 默认的边界前缀是 | 符号。可以使用其他字符：trimMargin("/")
+println(textTrim)
+```
+##### 数组和集合的操作符
+`forEach`、`filter`、`map`、`flatMap`
+
+##### Range
+`IntRang`、`CharRange`、`LongRange`
+
+`step`：遍历时的步长
+```
+val range: IntRange = 0..1000 // 闭区间：[0, 1000]
+val range1: IntRange = 0 until 1000 // 半开区间：[0, 1000)
+for (i in range step 2) { // 默认步长为1
+    print("$i, ")
+}
+```
+
+`downTo`：递减区间。（只有闭区间）
+```
+for (i in 10 downTo 1) { // 递减的闭区间：[10, 1]
+    print("$i, ")
+}
+```
+
+##### Sequence
+惰性特征：适合在数据量比较大或者数据量未知的时候，作为流式处理的解决方案。
+```
+val sequence = sequenceOf(1, 2, 3, 4)
+val result: Sequence<Int> = sequence
+    .map { i ->
+        println("Map $i")
+        i * 2
+    }
+    .filter { i ->
+        println("Filter $i")
+        i % 3 == 0
+    }
+// 只取集合的第一个元素
+// --因为 Sequence 的惰性特征，上面的集合遍历到 3 就会结束（已满足遍历结束条件），4 会被跳过
+println(result.first())
+```
+
+##### 条件控制
+`if/else`：可以直接作为表达式赋值给变量：
+```
+// if/else 直接赋值给 max
+val max = if (a > b) a else b
+
+// 代码块的最后一行作为结果返回赋值给 min
+val min = if (a < b) {
+    println("min:a")
+    a // 返回 a
+} else {
+    println("min:b")
+    b // 返回 b
+}
+```
+
+`when`
+
+代替了 Java 中的 `switch-case`。省略了 `case`，`default` 变为 `else`
+```
+when (x) {
+    1 -> { println("1") }
+    2 -> { println("2") }
+    else -> { println("else") }
+}
+```
+
+可以作为表示式使用，此时必须有 `else`。
+
+`when` 的多个分支可以合并，使用 `,` 分隔：
+```
+when (x) {
+    1, 2 -> println("x == 1 or x == 2")
+    else -> println("else")
+}
+```
+
+表达式可以作为 `when` 的条件。
+
+`when` 后面的参数可以省略，每个分支条件可以是一个表达式。
+
+`for`
+```
+val array = intArrayOf(1, 2, 3, 4)
+for (item in array) {
+    println("item is $item")
+}
+
+for (i in 1..10) {
+    println("i is $i")
+}
+```
+
+`try-catch`
+
+与 Java 基本相同
+```
+try {
+     
+} catch (e: Exception) {
+    
+} finally {
+    
+}
+```
+
+不同：
+- 编译期不会对抛异常的方法调用提示错误
+
+可以作为表示式使用。
+
+##### 操作符
+判空操作符 `?:`
+
+判等操作符：`==`（等价 `equals()`）、`===`（引用地址比较）

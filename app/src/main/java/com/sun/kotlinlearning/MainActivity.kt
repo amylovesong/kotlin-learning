@@ -48,4 +48,23 @@ class MainActivity : AppCompatActivity(), Impl {
             (view as? Button)?.text = timeCostResult
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        val arrayCollectionSample =  ArrayCollectionSample()
+        arrayCollectionSample.methodOperation()
+        arrayCollectionSample.methodSequence()
+
+        OperationSample().methodEqualSample()
+
+        // Exercise of Lesson 3
+        val studentS: ExerciseLesson3.Student = ExerciseLesson3.Student("S", 18, 100)
+        val studentA: ExerciseLesson3.Student = ExerciseLesson3.Student("A", 18)
+        studentS.show()
+        studentA.show()
+
+        val exerciseLesson3 = ExerciseLesson3()
+        exerciseLesson3.methodFilter()
+    }
 }
