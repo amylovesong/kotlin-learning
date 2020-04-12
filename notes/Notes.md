@@ -1,5 +1,5 @@
 # Kotlin 教程笔记
-> [Kotlin 基础](https://kaixue.io/tag/kotlin-ji-chu/)
+> [Kotlin 基础](https://kaixue.io/tag/kotlin-basic/)
 
 ### Lesson 1
 > [Kotlin 的变量、函数和类型](https://kaixue.io/kotlin-basic-1/)
