@@ -66,5 +66,8 @@ class MainActivity : AppCompatActivity(), Impl {
 
         val exerciseLesson3 = ExerciseLesson3()
         exerciseLesson3.methodFilter()
+
+        val exerciseGeneric = ExerciseGeneric()
+        exerciseGeneric.methodSample()
     }
 }
