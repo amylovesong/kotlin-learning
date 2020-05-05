@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity(), Impl {
@@ -67,7 +68,16 @@ class MainActivity : AppCompatActivity(), Impl {
         val exerciseLesson3 = ExerciseLesson3()
         exerciseLesson3.methodFilter()
 
+        // Exercise of Generics
         val exerciseGeneric = ExerciseGeneric()
         exerciseGeneric.methodSample()
+
+        // Exercise of Coroutines
+        val exerciseCoroutines = ExerciseCoroutines()
+        exerciseCoroutines.printThreadName()
+    }
+
+    fun showImage(view: View) {
+        ExerciseCoroutines().showImage(view as ImageView)
     }
 }
