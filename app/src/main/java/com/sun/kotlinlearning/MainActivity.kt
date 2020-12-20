@@ -80,4 +80,8 @@ class MainActivity : AppCompatActivity(), Impl {
     fun showImage(view: View) {
         ExerciseCoroutines().showImage(view as ImageView)
     }
+
+    fun showPartOfImage(view: View) {
+        ExerciseCoroutines().showPartOfImage(findViewById(R.id.img1), findViewById(R.id.img2))
+    }
 }

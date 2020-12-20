@@ -59,14 +59,44 @@ CoroutineScope(Dispatchers.Main).launch {
 ```
 
 ##### suspend 关键字
-`suspend` 是 Kotlin 协程最核心的关键字。代码执行到 suspend 函数的时候会「挂起」，
+> `suspend` 是 Kotlin 协程最核心的关键字。代码执行到 suspend 函数的时候会「挂起」，
 并且这个「挂起」是非阻塞式的，它不会阻塞你当前的线程。
 
 ### Lesson 2
 > [Kotlin 协程-2](https://kaixue.io/kotlin-coroutines-2/)
 
-##### TODO
+##### 创建协程的 3 种方式：
+1. `launch`：最常用且推荐使用。
+2. `runBlocking`：适用于单测的场景，因为它是线程阻塞的。
+3. `async`：与 `launch` 类似，但返回的 `Coroutine` 多实现了 `Deferred` 接口。
 
+##### "挂起"的本质
+> "挂起"的对象是协程。
+> 挂起时协程从启动它的线程脱离，之后线程和协程分别执行各自的代码。
+
+##### Dispatchers（调度器）
+> 将协程限制在一个特定的线程执行，或者将它分派到一个线程池，或者让它不受限制地运行。
+
+常用的三种 `Dispatcher`：
+1. Dispatchers.Main：Android 中的主线程
+2. Dispatchers.IO：IO 线程，适用于 IO 密集型任务。
+3. Dispatchers.Default：计算线程，适用于 CPU 密集型任务。
+
+##### "挂起"之后的恢复（resume）
+> 挂起函数在执行完成之后，协程会重新切回它原来的线程。
+> 所以 Kotlin 中挂起可理解为"一个稍后会被自动切回来的线程调度操作"。
+> 恢复功能是协程完成的。因此挂起函数必须在协程中被调用，否则无法完成恢复操作。
+
+##### 具体是如何"挂起"的
+> 在使用 `suspend` 关键字修饰的自定义函数中直接或间接地调用 Kotlin 协程框架自带的 `suspend` 函数，才能真正实现挂起操作。
+> 而仅仅使用 `suspend` 关键字本身来修饰一个函数，是无法实现挂起操作的。
+
+##### "suspend" 关键字
+可简单理解为一个提醒：旨在标明被修饰的函数内部有耗时操作，需要在协程中被调用。
+（实际的作用是为了简化编译过程中对上下文代码的管理）
+
+##### 使用场景
+有耗时操作的场景中，都可以定义为 `suspend` 函数。例如 IO 操作和 CPU 计算等。
 
 ### Lesson 3
 > [Kotlin 协程-3](https://kaixue.io/kotlin-coroutines-2/)
