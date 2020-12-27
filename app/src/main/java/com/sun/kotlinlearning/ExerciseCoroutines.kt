@@ -1,10 +1,16 @@
 package com.sun.kotlinlearning
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import kotlinx.coroutines.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import java.net.URL
 import java.util.zip.GZIPInputStream
 
@@ -60,5 +66,24 @@ class ExerciseCoroutines {
         val splitHeight = source.height / column
         return Bitmap.createBitmap(source, splitWidth * startRow, splitHeight * startColumn, splitWidth, splitHeight)
     }
+
+    fun request(showLoading: () -> Unit, dismissLoading: () -> Unit, showError: () -> Unit, showResult: (String) -> Unit) {
+        CoroutineScope(Dispatchers.Main).launch {
+            showLoading()
+            val response = requestUrl()
+            dismissLoading()
+            if(!response.isSuccessful) {
+                showError()
+            }
+            showResult("${response.message}: ${response.code}")
+        }
+    }
+
+    private suspend fun requestUrl(): Response = withContext(Dispatchers.IO) {
+        val url = "https://api.github.com/users/amylovesong/repos"
+        val request = Request.Builder().url(url).build()
+        OkHttpClient().newCall(request).execute()
+    }
+
 
 }

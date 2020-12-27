@@ -101,6 +101,12 @@ CoroutineScope(Dispatchers.Main).launch {
 ### Lesson 3
 > [Kotlin 协程-3](https://kaixue.io/kotlin-coroutines-2/)
 
-##### TODO
+##### Kotlin 协程的非阻塞式挂起
+> 是指它能用看起来阻塞的代码写出非阻塞的操作。
+
+##### 协程与线程
+> 在 Kotlin 中，协程是基于线程来实现的一种更上层的工具 API。在设计思想上是一个基于线程的上层框架。
+>
+>（注意此处仅限在 Java 环境下，其他语言中如有协程本身这个概念时，此处的解释不适用。）
 
 

@@ -3,8 +3,7 @@ package com.sun.kotlinlearning
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity(), Impl {
@@ -83,5 +82,28 @@ class MainActivity : AppCompatActivity(), Impl {
 
     fun showPartOfImage(view: View) {
         ExerciseCoroutines().showPartOfImage(findViewById(R.id.img1), findViewById(R.id.img2))
+    }
+
+    fun requestUrl(view: View) {
+        ExerciseCoroutines().request(::showLoading, ::dismissLoading, ::showError, ::showResult)
+    }
+
+    private fun showLoading() {
+        findViewById<ProgressBar>(R.id.pb_loading).visibility = View.VISIBLE
+    }
+
+    private fun dismissLoading() {
+        findViewById<ProgressBar>(R.id.pb_loading).visibility = View.GONE
+    }
+
+    private fun showError() {
+        Toast.makeText(this, "Something's wrong!", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showResult(result: String) {
+        findViewById<TextView>(R.id.tv_request_result).let {
+            it.text = result
+            it.visibility = View.VISIBLE
+        }
     }
 }

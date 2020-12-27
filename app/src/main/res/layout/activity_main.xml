@@ -96,4 +96,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/img" />
 
+    <Button
+        android:id="@+id/btn_request_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Request"
+        android:textAllCaps="false"
+        android:onClick="requestUrl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/btn_request_url"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_request_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintTop_toTopOf="@id/btn_request_url"
+        app:layout_constraintStart_toEndOf="@+id/btn_request_url"
+        app:layout_constraintBottom_toBottomOf="@id/btn_request_url" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
