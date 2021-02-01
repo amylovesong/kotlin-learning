@@ -1,13 +1,10 @@
 package com.sun.kotlinlearning
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import android.widget.ImageView
-import android.widget.Toast
 import kotlinx.coroutines.*
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -16,7 +13,7 @@ import java.util.zip.GZIPInputStream
 
 /**
  *
- * @author sxl (sunxiaoling@didiglobal.com)
+ * @author sxl (amylovesong.sun@gmail.com)
  * @since 2020/5/5.
  */
 class ExerciseCoroutines {

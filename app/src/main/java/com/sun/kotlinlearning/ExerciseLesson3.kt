@@ -2,7 +2,7 @@ package com.sun.kotlinlearning
 
 /**
  *
- * @author sxl (sunxiaoling@didiglobal.com)
+ * @author sxl (amylovesong.sun@gmail.com)
  * @since 2020/4/12.
  */
 class ExerciseLesson3 {

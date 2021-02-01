@@ -4,7 +4,7 @@ import java.lang.NumberFormatException
 
 /**
  *
- * @author sxl (sunxiaoling@didiglobal.com)
+ * @author sxl (amylovesong.sun@gmail.com)
  * @since 2020/4/11.
  */
 class ConditionSample {

@@ -4,7 +4,7 @@ import androidx.viewpager.widget.ViewPager
 
 /**
  *
- * @author sxl (sunxiaoling@didiglobal.com)
+ * @author sxl (amylovesong.sun@gmail.com)
  * @since 2020/4/4.
  */
 class CompanionObjectSample {

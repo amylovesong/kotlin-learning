@@ -4,7 +4,7 @@ import android.app.Person
 
 /**
  *
- * @author sxl (sunxiaoling@didiglobal.com)
+ * @author sxl (amylovesong.sun@gmail.com)
  * @since 2020/4/8.
  */
 class ConstructorSample constructor(name: String) { // 主构造器
